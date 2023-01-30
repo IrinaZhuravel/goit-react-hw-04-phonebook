@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button} from './ContactForm.styled';
 
-class ContactForm extends Component {
-  state = { name: '', number: '' };
+const ContactForm = ({onSubmit}) => { 
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   handleChange = e => {
     const { name, value } = e.currentTarget;
