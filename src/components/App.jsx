@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     const contactsData = JSON.parse(localStorage.getItem('contacts'));
     if (contactsData !== null) {
-      setContacts(prevState => [...prevState, ...contactsData]);
+      setContacts(contactsData);
     }
   }, []);
 
@@ -29,7 +29,6 @@ const App = () => {
     setFilter(value);
   };
 
-  
   const formSubmit = ({ name, number }) => {
     const checkContact = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -60,7 +59,6 @@ const App = () => {
     setContacts(prevState => prevState.filter(contact => contact.id !== id));
   };
 
-  
   const isContacts = contacts.length !== 0;
   const visibleContacts = filterContacts(filter);
 
