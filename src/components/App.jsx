@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import shortId from 'shortid';
 import Container from './Container';
 import ContactForm from './ContactForm';
@@ -6,22 +6,12 @@ import Filter from './Filter';
 import ContactList from './ContactList';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('contacts')));
   const [filter, setFilter] = useState('');
-  const initial = useRef(false);
+  // const initial = useRef(false);
 
   useEffect(() => {
-    const contactsData = JSON.parse(localStorage.getItem('contacts'));
-    if (contactsData !== null) {
-      setContacts(contactsData);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (initial.current) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
-    initial.current = true;
+        localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const handleChange = e => {
